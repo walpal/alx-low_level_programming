@@ -1,6 +1,6 @@
 #include <stdio.h>
-/* printing a text with a put function */
-/* The main function must return a zero Value */
+/* Main - prints a text with a put function */
+/* return - a zero Value */
 
 int main(void)
 {
