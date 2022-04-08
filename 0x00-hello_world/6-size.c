@@ -1,4 +1,4 @@
-#include <studio.h>
+#include <stdio.h>
 /* to print the size of various types */
 /* checking 
  * multiple 
