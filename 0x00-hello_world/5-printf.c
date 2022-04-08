@@ -1,4 +1,4 @@
-#include <stdio.sh>
+#include <stdio.h>
 
 /* 
  * main prints a text with a printf function
