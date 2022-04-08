@@ -1,6 +1,5 @@
-#!/bin/bash
-/* printing a text with a put function */
 #include <studio.sh>
+/* printing a text with a put function */
 
 int main(void)
 { 
