@@ -1,4 +1,4 @@
-#include <studio.sh>
+#include <studio.h>
 /* printing a text with a put function */
 
 int main(void)
