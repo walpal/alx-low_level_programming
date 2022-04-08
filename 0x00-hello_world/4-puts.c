@@ -1,4 +1,4 @@
-#include <studio.h>
+#include <stdio.h>
 /* printing a text with a put function */
 
 int main(void)
