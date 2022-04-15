@@ -1,16 +1,18 @@
 #include "main.h"
 
 /**
- * main - tests function that prints if integer is positive or negative
- * Return: 0
+ * main - Entry point
+ * Return: Always 0
  */
-
 int main(void)
 {
-	int i;
+	unsigned long int i = 3, n = 612852475143;
 
-	i = 0;
-	positive_or_negative(i);
-
+	for (; i < 12057; i += 2)
+	{
+		while (n % i == 0 && n != i)
+			n /= i;
+	}
+	printf("%lu\n", n);
 	return (0);
 }
