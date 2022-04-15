@@ -1,16 +1,16 @@
 #include "main.h"
 
 /**
- * main - tests function that prints if integer is positive or negative
- * Return: 0
+ *mul - multiplies two ints.
+ *@a: integer.
+ *@b: integer.
+ *
+ *Return: product.
  */
-
-int main(void)
+int mul(int a, int b)
 {
-	int i;
+	int product;
 
-	i = 0;
-	positive_or_negative(i);
-
-	return (0);
+	product = a * b;
+	return (product);
 }
