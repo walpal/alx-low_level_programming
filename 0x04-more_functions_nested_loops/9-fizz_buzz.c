@@ -1,16 +1,26 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * main - tests function that prints if integer is positive or negative
- * Return: 0
+ * main - Entry piont
+ * Return: Always 0
  */
-
 int main(void)
 {
-	int i;
+	int i = 1;
 
-	i = 0;
-	positive_or_negative(i);
+	for (; i < 100 ; i++)
+	{
+		if (i % 3 == 0 && i % 5 == 0)
+			printf("FizzBuzz ");
+		else if (i % 3 == 0)
+			printf("Fizz ");
+		else if (i % 5 == 0)
+			printf("Buzz ");
+		else
+			printf("%d ", i);
+	}
+	printf("Buzz\n");
 
 	return (0);
 }
