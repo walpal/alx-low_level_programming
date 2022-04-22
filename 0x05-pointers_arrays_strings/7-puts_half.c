@@ -1,11 +1,33 @@
 #include "main.h"
 
 /**
- * _isupper - checks for uppercase character
- * @c: the character to be checked
- * Return: 1 if c is uppercase, 0 otherwise
+ * puts_half - prints half of a string
+ * followed by a new line
+ * @str: string to be printed
  */
-int _isupper(int c)
+void puts_half(char *str)
 {
-	return (c >= 'A' && c <= 'Z');
+	int len, n, i;
+
+	len = 0;
+
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+
+	if (len % 2 == 0)
+	{
+		for (i = len / 2; str[i] != '\0'; i++)
+		{
+			_putchar(str[i]);
+		}
+	} else if (len % 2)
+	{
+		for (n = (len - 1) / 2; n < len - 1; n++)
+		{
+			_putchar(str[n + 1]);
+		}
+	}
+	_putchar('\n');
 }
