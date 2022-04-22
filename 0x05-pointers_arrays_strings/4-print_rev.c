@@ -1,11 +1,26 @@
 #include "main.h"
 
 /**
- * _isupper - checks for uppercase character
- * @c: the character to be checked
- * Return: 1 if c is uppercase, 0 otherwise
+ * print_rev - prints a string in reverse, followed by a new line
+ * @s: string to be printed
  */
-int _isupper(int c)
+void print_rev(char *s)
 {
-	return (c >= 'A' && c <= 'Z');
+	int i, j, len;
+
+	i = 0;
+
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+
+	len = i;
+
+	for (j = len - 1; j >= 0; j--)
+	{
+		_putchar(s[j]);
+	}
+
+	_putchar('\n');
 }
