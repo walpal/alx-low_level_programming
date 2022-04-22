@@ -1,11 +1,15 @@
 #include "main.h"
 
 /**
- * _isupper - checks for uppercase character
- * @c: the character to be checked
- * Return: 1 if c is uppercase, 0 otherwise
+ * swap_int - swaps the values of two integers
+ * @a: pointer to first value
+ * @b: pointer to second value
  */
-int _isupper(int c)
+void swap_int(int *a, int *b)
 {
-	return (c >= 'A' && c <= 'Z');
+	int c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
 }
