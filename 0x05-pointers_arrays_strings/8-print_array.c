@@ -1,11 +1,21 @@
 #include "main.h"
 
 /**
- * _isupper - checks for uppercase character
- * @c: the character to be checked
- * Return: 1 if c is uppercase, 0 otherwise
+ * print_array - prints n elements of an array of integers
+ * followed by a new line
+ * @a: array to be printed
+ * @n: number of elements to print
  */
-int _isupper(int c)
+void print_array(int *a, int n)
 {
-	return (c >= 'A' && c <= 'Z');
+	int i;
+
+	for (i = 0; i < n; i++)
+	{
+		if (i == 0)
+			printf("%d", a[i]);
+		else
+			printf(", %d", a[i]);
+	}
+		printf("\n");
 }
