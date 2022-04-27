@@ -1,25 +1,19 @@
 #include "main.h"
 
 /**
- * puts2 - prints one char out of 2 of a string
- * followed by a new line
- * @str: string to print the chars from
+ * print_chessboard - prints the chessboard
+ * @a: two dimension array to print
  */
-void puts2(char *str)
+void print_chessboard(char (*a)[8])
 {
-	int len, i;
+	int i, j;
 
-	len = 0;
-
-	while (str[len] != '\0')
+	for (i = 0; i < 8; i++)
 	{
-		len++;
+		for (j = 0; j < 8; j++)
+		{
+			_putchar(a[i][j]);
+		}
+		_putchar('\n');
 	}
-
-	for (i = 0; i < len; i += 2)
-	{
-		_putchar(str[i]);
-	}
-
-	_putchar('\n');
 }
