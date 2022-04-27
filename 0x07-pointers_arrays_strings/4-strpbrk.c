@@ -1,26 +1,29 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * print_rev - prints a string in reverse, followed by a new line
- * @s: string to be printed
+ * *_strpbrk - searches a string for any of a set of bytes
+ * @s: string to search
+ * @accept: stringcontaining the bytes to look for
+ *
+ * Return: pointer to the byte in s that matches one of the bytes in accept
+ * or NULL if no such byte is found
  */
-void print_rev(char *s)
+char *_strpbrk(char *s, char *accept)
 {
-	int i, j, len;
+	int i, j;
 
-	i = 0;
-
-	while (s[i] != '\0')
+	for (i = 0; *s != '\0'; i++)
 	{
-		i++;
+		for (j = 0; accept[j] != '\0'; j++)
+		{
+			if (*s == accept[j])
+			{
+				return (s);
+			}
+		}
+		s++;
 	}
 
-	len = i;
-
-	for (j = len - 1; j >= 0; j--)
-	{
-		_putchar(s[j]);
-	}
-
-	_putchar('\n');
+	return (NULL);
 }
