@@ -1,33 +1,26 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * puts_half - prints half of a string
- * followed by a new line
- * @str: string to be printed
+ * print_diagsums - prints the sum of the two diagonals
+ * of a square matrix of integers
+ * @a: square matrix of which we print the sum of diagonals
+ * @size: size of the matrix
  */
-void puts_half(char *str)
+void print_diagsums(int *a, int size)
 {
-	int len, n, i;
+	int i;
 
-	len = 0;
+	unsigned int sum, sum1;
 
-	while (str[len] != '\0')
+	sum = 0;
+	sum1 = 0;
+
+	for (i = 0; i < size; i++)
 	{
-		len++;
+		sum += a[(size * i) + i];
+		sum1 += a[(size * (i + 1)) - (i + 1)];
 	}
 
-	if (len % 2 == 0)
-	{
-		for (i = len / 2; str[i] != '\0'; i++)
-		{
-			_putchar(str[i]);
-		}
-	} else if (len % 2)
-	{
-		for (n = (len - 1) / 2; n < len - 1; n++)
-		{
-			_putchar(str[n + 1]);
-		}
-	}
-	_putchar('\n');
+	printf("%d, %d\n", sum, sum1);
 }
