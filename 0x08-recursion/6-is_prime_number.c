@@ -1,19 +1,32 @@
 #include "main.h"
 
-/**
- * print_chessboard - prints the chessboard
- * @a: two dimension array to print
- */
-void print_chessboard(char (*a)[8])
-{
-	int i, j;
+int actual_prime(int n, int i);
 
-	for (i = 0; i < 8; i++)
-	{
-		for (j = 0; j < 8; j++)
-		{
-			_putchar(a[i][j]);
-		}
-		_putchar('\n');
-	}
+/**
+ * is_prime_number - says if an integer is a prime number or not
+ * @n: number to evaluate
+ *
+ * Return: 1 if n is a prime number, 0 if not
+ */
+int is_prime_number(int n)
+{
+	if (n <= 1)
+		return (0);
+	return (actual_prime(n, n - 1));
+}
+
+/**
+ * actual_prime - calculates if a number is prime recursively
+ * @n: number to evaluate
+ * @i: iterator
+ *
+ * Return: 1 if n is prime, 0 if not
+ */
+int actual_prime(int n, int i)
+{
+	if (i == 1)
+		return (1);
+	if (n % i == 0 && i > 0)
+		return (0);
+	return (actual_prime(n, i - 1));
 }
