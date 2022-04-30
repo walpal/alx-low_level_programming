@@ -2,27 +2,14 @@
 #include <stdio.h>
 
 /**
- * *_strchr - locates a character in a string
- * @s: string to search
- * @c: char to find
+ * _strlen_recursion - returns the length of a string
+ * @s: string to calculate the length of
  *
- * Return: a pointer to the first occurrence of the character
- * c in the string s, or NULL if the character is not found
+ * Return: length of the string
  */
-char *_strchr(char *s, char c)
+int _strlen_recursion(char *s)
 {
-		int a;
-
-		while (1)
-		{
-			a = *s++;
-			if (a == c)
-			{
-				return (s - 1);
-			}
-			if (a == 0)
-			{
-				return (NULL);
-			}
-		}
+	if (*s == '\0')
+		return (0);
+	return (1 + _strlen_recursion(s + 1));
 }
