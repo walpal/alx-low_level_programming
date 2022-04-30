@@ -1,26 +1,47 @@
 #include "main.h"
-#include <stdio.h>
+
+int check_pal(char *s, int i, int len);
+int _strlen_recursion(char *s);
 
 /**
- * print_diagsums - prints the sum of the two diagonals
- * of a square matrix of integers
- * @a: square matrix of which we print the sum of diagonals
- * @size: size of the matrix
+ * is_palindrome - checks if a string is a palindrome
+ * @s: string to reverse
+ *
+ * Return: 1 if it is, 0 it's not
  */
-void print_diagsums(int *a, int size)
+int is_palindrome(char *s)
 {
-	int i;
+	if (*s == 0)
+		return (1);
+	return (check_pal(s, 0, _strlen_recursion(s)));
+}
 
-	unsigned int sum, sum1;
+/**
+ * _strlen_recursion - returns the length of a string
+ * @s: string to calculate the length of
+ *
+ * Return: length of the string
+ */
+int _strlen_recursion(char *s)
+{
+	if (*s == '\0')
+		return (0);
+	return (1 + _strlen_recursion(s + 1));
+}
 
-	sum = 0;
-	sum1 = 0;
-
-	for (i = 0; i < size; i++)
-	{
-		sum += a[(size * i) + i];
-		sum1 += a[(size * (i + 1)) - (i + 1)];
-	}
-
-	printf("%d, %d\n", sum, sum1);
+/**
+ * check_pal - checks the characters recursively for palindrome
+ * @s: string to check
+ * @i: iterator
+ * @len: length of the string
+ *
+ * Return: 1 if palindrome, 0 if not
+ */
+int check_pal(char *s, int i, int len)
+{
+	if (*(s + i) != *(s + len - 1))
+		return (0);
+	if (i >= len)
+		return (1);
+	return (check_pal(s, i + 1, len - 1));
 }
