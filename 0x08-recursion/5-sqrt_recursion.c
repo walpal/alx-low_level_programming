@@ -1,27 +1,33 @@
 #include "main.h"
-#include <stdio.h>
+
+int actual_sqrt_recursion(int n, int i);
 
 /**
- * *_strstr - locates a substring
- * @haystack: string to search in
- * @needle: substring to look for
+ * _sqrt_recursion - returns the natural square root of a number
+ * @n: number to calculate the square root of
  *
- * Return: pointer to the beginning of the located substring
- * or NULL if the substring is not found
+ * Return: the resulting square root
  */
-char *_strstr(char *haystack, char *needle)
+int _sqrt_recursion(int n)
 {
-	int i, j;
+	if (n < 0)
+		return (-1);
+	return (actual_sqrt_recursion(n, 0));
+}
 
-	for (i = 0; haystack[i] != '\0'; i++)
-	{
-		for (j = 0; needle[j] != '\0'; j++)
-		{
-			if (haystack[i + j] != needle[j])
-				break;
-		}
-		if (!needle[j])
-			return (&haystack[i]);
-	}
-	return (NULL);
+/**
+ * actual_sqrt_recursion - recurses to find the natural
+ * square root of a number
+ * @n: number to calculate the sqaure root of
+ * @i: iterator
+ *
+ * Return: the resulting square root
+ */
+int actual_sqrt_recursion(int n, int i)
+{
+	if (i * i > n)
+		return (-1);
+	if (i * i == n)
+		return (i);
+	return (actual_sqrt_recursion(n, i + 1));
 }
