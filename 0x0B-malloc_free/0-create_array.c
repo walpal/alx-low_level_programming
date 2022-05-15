@@ -2,27 +2,33 @@
 #include "main.h"
 
 /**
- * *create_array - creates an array of integers
- * @min: minimum range of values stored
- * @max: maximum range of values stored and number of elements
+ * *create_array - creates an array of chars,
+ * and initializes it with a specific char
+ * @size: size of the array to create
+ * @c: char to initialize the array c
  *
- * Return: pointer to the new array
+ * Return: pointer to the array (Success), NULL (Error)
  */
 char *create_array(unsigned int size, char c)
 {
-	int *ptr;
-	int i, size;
+	char *p;
+	unsigned int i = 0;
 
-	if (size = 0)
+	if (size == 0)
 		return (NULL);
 
-	ptr = malloc(sizeof(char) * size);
+	p = (char *) malloc(sizeof(char) * size);
 
-	if (ptr == NULL)
-		return (NULL);
+	if (p == NULL)
+		return (0);
 
-	for (i = 0; min <= max; i++)
-		ptr[i] = min++;
+	while (i < size)
+	{
+		*(p + i) = c;
+		i++;
+	}
 
-	return (ptr);
+	*(p + i) = '\0';
+
+	return (p);
 }
