@@ -1,47 +1,44 @@
 #include "main.h"
-
-int check_pal(char *s, int i, int len);
-int _strlen_recursion(char *s);
+#include <stdlib.h>
 
 /**
- * is_palindrome - checks if a string is a palindrome
- * @s: string to reverse
+ * *argstostr - concatenates all the arguments of the program
+ * @ac: number of arguments
+ * @av: array of arguments
  *
- * Return: 1 if it is, 0 it's not
+ * Return: Pointer to the new string (Success), NULL (Error)
  */
-int is_palindrome(char *s)
+char *argstostr(int ac, char **av)
 {
-	if (*s == 0)
-		return (1);
-	return (check_pal(s, 0, _strlen_recursion(s)));
-}
+	int i, j, k, len;
+	char *str;
 
-/**
- * _strlen_recursion - returns the length of a string
- * @s: string to calculate the length of
- *
- * Return: length of the string
- */
-int _strlen_recursion(char *s)
-{
-	if (*s == '\0')
-		return (0);
-	return (1 + _strlen_recursion(s + 1));
-}
+	if (ac == 0 || av == NULL)
+		return (NULL);
 
-/**
- * check_pal - checks the characters recursively for palindrome
- * @s: string to check
- * @i: iterator
- * @len: length of the string
- *
- * Return: 1 if palindrome, 0 if not
- */
-int check_pal(char *s, int i, int len)
-{
-	if (*(s + i) != *(s + len - 1))
-		return (0);
-	if (i >= len)
-		return (1);
-	return (check_pal(s, i + 1, len - 1));
-}
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j] != '\0'; j++)
+			len++;
+		len++;
+	}
+
+	str = malloc(sizeof(char) * (len + 1));
+
+	if (str == NULL)
+		return (NULL);
+
+	k = 0;
+
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j] != '\0'; j++)
+		{
+			str[k] = av[i][j];
+			k++;
+		}
+		str[k] = '\n';
+		k++;
+	}
+
+	return (str);
