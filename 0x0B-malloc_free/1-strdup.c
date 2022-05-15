@@ -2,45 +2,31 @@
 #include <stdlib.h>
 
 /**
- * *_memset - fills memory with a constant byte
- * @s: memory area to be filled
- * @b: char to copy
- * @n: number of times to copy b
+ * *_strdup - copies the string given as parameter
+ * @str: string to duplicate
  *
- * Return: pointer to the memory area s
+ * Return: pointer to the copied string (Success), NULL (Error)
  */
-char *_memset(char *s, char b, unsigned int n)
+char *_strdup(char *str)
 {
-	unsigned int i;
+	char *dup;
+	unsigned int i, len;
 
-	for (i = 0; i < n; i++)
-	{
-		s[i] = b;
-	}
+	i = 0;
+	len = 0;
 
-	return (s);
-}
-
-/**
- * *_calloc - allocates memory for an array
- * @nmemb: number of elements in the array
- * @size: size of each element
- *
- * Return: pointer to allocated memory
- */
-void *_calloc(unsigned int nmemb, unsigned int size)
-{
-	char *ptr;
-
-	if (nmemb == 0 || size == 0)
+	if (str == NULL)
 		return (NULL);
 
-	ptr = malloc(size * nmemb);
+	while (str[len])
+		len++;
 
-	if (ptr == NULL)
+	dup = malloc(sizeof(char) * (len + 1));
+
+	if (dup == NULL)
 		return (NULL);
 
-	_memset(ptr, 0, nmemb * size);
+	while ((dup[i] = str[i]) != '\0')
+		i++;
 
-	return (ptr);
-}
+	return (dup);
