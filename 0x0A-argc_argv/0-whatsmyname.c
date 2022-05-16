@@ -1,28 +1,14 @@
-#include <stdlib.h>
-#include "main.h"
+#include <stdio.h>
 
 /**
- * *create_array - creates an array of integers
- * @min: minimum range of values stored
- * @max: maximum range of values stored and number of elements
- *
- * Return: pointer to the new array
+ * main - prints its name, followed by a new line.
+ * @argc: number of command line arguments.
+ * @argv: array that contains the program command line arguments.
+ * Return: 0 - success.
  */
-char *create_array(unsigned int size, char c)
+
+int main(int argc __attribute__((unused)), char *argv[])
 {
-	int *ptr;
-	int i, size;
-
-	if (size = 0)
-		return (NULL);
-
-	ptr = malloc(sizeof(char) * size);
-
-	if (ptr == NULL)
-		return (NULL);
-
-	for (i = 0; min <= max; i++)
-		ptr[i] = min++;
-
-	return (ptr);
+	printf("%s\n", argv[0]);
+	return (0);
 }
