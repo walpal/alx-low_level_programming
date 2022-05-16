@@ -1,109 +1,77 @@
 #include "main.h"
-
-int bandersnatch(char *s1, char *s2);
-char *move(char *s2);
+#include <stdlib.h>
 
 /**
- * wildcmp - compares two strings recursively,
- * checking for wildcards expansion
- * @s1: first string to compare
- * @s2: second string to compare
+ * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
  *
- * Return: 1 if the strings can be considered identical
- * otherwise 0
+ * Return: number of words
  */
-int wildcmp(char *s1, char *s2)
+int count_word(char *s)
 {
-	/**
-	 * this is going to be a sum of return values
-	 */
-	int sum = 0;
+	int flag, c, w;
 
-	/**
-	 * if we reach the end of s1 and the char in s2 is a *
-	 * and if the next chars of s2 are *, return 1
-	 */
-	if (*s1 == '\0' && *s2 == '*' && !*move(s2))
-		return (1);
+	flag = 0;
+	w = 0;
 
-	/**
-	 * if the chars are equal in both strings,
-	 * if we reached the end of s1, return 1
-	 * else increment s1 and s2 by 1
-	 */
-	if (*s1 == *s2)
+	for (c = 0; s[c] != '\0'; c++)
 	{
-		if (*s1 == '\0')
-			return (1);
-		return (wildcmp(s1 + 1, s2 + 1));
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
+		{
+			flag = 1;
+			w++;
+		}
 	}
-	/**
-	 * if we reached the end of both strings,
-	 * return 0
-	 */
-	if (*s1 == '\0' || *s2 == '\0')
-		return (0);
 
-	/**
-	 * if the char in s2 is a *
-	 * finds the address of the first char after the *
-	 * if we reached the end of s2, return 1
-	 * if the chars are equal, add the return values
-	 * of wildcmp() to sum
-	 * add the return value of bandersnatch() to sum
-	 * convert non-zero to 1, keeps 0 at 0, return
-	 */
-	if (*s2 == '*')
+	return (w);
+}
+/**
+ * **strtow - splits a string into words
+ * @str: string to split
+ *
+ * Return: pointer to an array of strings (Success)
+ * or NULL (Error)
+ */
+char **strtow(char *str)
+{
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
+
+	while (*(str + len))
+		len++;
+	words = count_word(str);
+	if (words == 0)
+		return (NULL);
+
+	matrix = (char **) malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
+		return (NULL);
+
+	for (i = 0; i <= len; i++)
 	{
-		s2 = move(s2);
-		if (*s2 == '\0')
-			return (1);
-		if (*s1 == *s2)
-			sum += wildcmp(s1 + 1, s2 + 1);
-		sum += bandersnatch(s1 + 1, s2);
-		return (!!sum);
+		if (str[i] == ' ' || str[i] == '\0')
+		{
+			if (c)
+			{
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
+			}
+		}
+		else if (c++ == 0)
+			start = i;
 	}
-	return (0);
-}
 
-/**
- * bandersnatch - checks recursively for all the paths when the
- * characters are equal
- * @s1: first string
- * @s2: second string
- *
- * Return: return value of wildcmp() or of itself
- */
-int bandersnatch(char *s1, char *s2)
-{
-	/**
-	 * if we reached the end of s1, return 0
-	 * if chars are equal, return the return value of wildcmp()
-	 * increment s1 by 1, not s2
-	 */
-	if (*s1 == '\0')
-		return (0);
-	if (*s1 == *s2)
-		return (wildcmp(s1, s2));
-	return (bandersnatch(s1 + 1, s2));
-}
+	matrix[k] = NULL;
 
-/**
- * *move - moves the current char past the *
- * @s2: string to iterate over
- *
- * Return: the address of the character after the *
- */
-char *move(char *s2)
-{
-	/**
-	 * if the current char is a *
-	 * increment s2 by 1
-	 * else return the address of
-	 * the first char past all *
-	 */
-	if (*s2 == '*')
-		return (move(s2 + 1));
-	else
-		return (s2);
+	return (matrix);
 }
