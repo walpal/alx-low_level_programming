@@ -1,17 +1,20 @@
 #include "main.h"
+#include <stdlib.h>
+
 
 /**
- * _pow_recursion - returns the value of x raised to the power of y
- * @x: value to raise
- * @y: power
+ * *_realloc - reallocates a memory block using malloc and free
+ * @ptr: pointer to the memory previsouly allocated by malloc
+ * @old_size: size of the allocated memory for ptr
+ * @new_size: new size of the new memory block
  *
- * Return: result of the power
+ * Return: pointer to the newly allocated memory block
  */
-int _pow_recursion(int x, int y)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	if (y < 0)
-		return (-1);
-	if (y == 0)
-		return (1);
-	return (x * _pow_recursion(x, y - 1));
-}
+	char *ptr1;
+	char *old_ptr;
+	unsigned int i;
+
+	if (new_size == old_size)
+		return (ptr);
