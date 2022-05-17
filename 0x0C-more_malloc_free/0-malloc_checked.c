@@ -1,28 +1,16 @@
-#include <stdlib.h>
 #include "main.h"
 
 /**
- * *create_array - creates an array of integers
- * @min: minimum range of values stored
- * @max: maximum range of values stored and number of elements
- *
- * Return: pointer to the new array
+ * malloc_checked - allocates memory using malloc
+ * @b: bytes allocate
+ * Return: pointer
  */
-char *create_array(unsigned int size, char c)
+void *malloc_checked(unsigned int b)
 {
-	int *ptr;
-	int i, size;
+	void *ptr;
 
-	if (size = 0)
-		return (NULL);
-
-	ptr = malloc(sizeof(char) * size);
-
+	ptr = malloc(b);
 	if (ptr == NULL)
-		return (NULL);
-
-	for (i = 0; min <= max; i++)
-		ptr[i] = min++;
-
+		exit(98);
 	return (ptr);
 }
