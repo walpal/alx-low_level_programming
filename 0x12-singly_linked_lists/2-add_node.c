@@ -1,15 +1,30 @@
+#include <stdlib.h>
+#include <string.h>
 #include "main.h"
-#include <stdio.h>
 
 /**
- * _strlen_recursion - returns the length of a string
- * @s: string to calculate the length of
+ * add_node - adds a new node at the beginning of a linked list
+ * @head: double pointer to the list_t list
+ * @str: new string to add in the node
  *
- * Return: length of the string
+ * Return: the address of the new element, or NULL if it fails
  */
-int _strlen_recursion(char *s)
+list_t *add_node(list_t **head, const char *str)
 {
-	if (*s == '\0')
-		return (0);
-	return (1 + _strlen_recursion(s + 1));
+	list_t *new;
+	unsigned int len = 0;
+
+	while (str[len])
+		len++;
+
+	new = malloc(sizeof(list_t));
+	if (!new)
+		return (NULL);
+
+	new->str = strdup(str);
+	new->len = len;
+	new->next = (*head);
+	(*head) = new;
+
+	return (*head);
 }
