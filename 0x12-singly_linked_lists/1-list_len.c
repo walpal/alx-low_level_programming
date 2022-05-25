@@ -1,14 +1,20 @@
+#include <stdlib.h>
 #include "main.h"
 
 /**
- * _print_rev_recursion - prints a string in reverse
- * @s: string to print
+ * list_len - returns the number of elements in a linked list
+ * @h: pointer to the list_t list
+ *
+ * Return: number of elements in h
  */
-void _print_rev_recursion(char *s)
+size_t list_len(const list_t *h)
 {
-	if (*s)
+	size_t n = 0;
+
+	while (h)
 	{
-		_print_rev_recursion(s + 1);
-		_putchar(*s);
+		n++;
+		h = h->next;
 	}
+	return (n);
 }
