@@ -1,17 +1,19 @@
+#include <stdlib.h>
 #include "main.h"
 
 /**
- * _pow_recursion - returns the value of x raised to the power of y
- * @x: value to raise
- * @y: power
- *
- * Return: result of the power
+ * free_list - frees a linked list
+ * @head: list_t list to be freed
  */
-int _pow_recursion(int x, int y)
+void free_list(list_t *head)
 {
-	if (y < 0)
-		return (-1);
-	if (y == 0)
-		return (1);
-	return (x * _pow_recursion(x, y - 1));
+	list_t *temp;
+
+	while (head)
+	{
+		temp = head->next;
+		free(head->str);
+		free(head);
+		head = temp;
+	}
 }
