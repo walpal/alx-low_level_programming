@@ -1,20 +1,41 @@
-#include "main.h"
+#include <stdlib.h>
+#include <string.h>
+#include "lists.h"
 
 /**
- * factorial - a function that returns the factorial of a given number
- * @n: integer to whose factorial is to be gotten
+ * add_node_end - adds a new node at the end of a linked list
+ * @head: double pointer to the list_t list
+ * @str: string to put in the new node
  *
- * Return: factorial of n
+ * Return: address of the new element, or NULL if it failed
  */
-int factorial(int n)
+list_t *add_node_end(list_t **head, const char *str)
 {
-	if (n < 0)
+	list_t *new;
+	list_t *temp = *head;
+	unsigned int len = 0;
+
+	while (str[len])
+		len++;
+
+	new = malloc(sizeof(list_t));
+	if (!new)
+		return (NULL);
+
+	new->str = strdup(str);
+	new->len = len;
+	new->next = NULL;
+
+	if (*head == NULL)
 	{
-		return (-1);
+		*head = new;
+		return (new);
 	}
-	if (n == 0)
-	{
-		return (1);
-	}
-	return (n * factorial(n - 1));
+
+	while (temp->next)
+		temp = temp->next;
+
+	temp->next = new;
+
+	return (new);
 }
