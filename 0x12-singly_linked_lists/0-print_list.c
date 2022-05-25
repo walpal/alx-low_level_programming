@@ -1,16 +1,25 @@
-#include "main.h"
+#include <stdio.h>
+#include "lists.h"
 
 /**
- * _puts_recursion - prints a string, followed by a new line
- * @s: string to print
+ * print_list - prints all the elements of a linked list
+ * @h: pointer to the list_t list to print
+ *
+ * Return: the number of nodes printed
  */
-void _puts_recursion(char *s)
+size_t print_list(const list_t *h)
 {
-	if (*s == '\0')
+	size_t s = 0;
+
+	while (h)
 	{
-		_putchar('\n');
-		return;
+		if (!h->str)
+			printf("[0] (nil)\n");
+		else
+			printf("[%u] %s\n", h->len, h->str);
+		h = h->next;
+		s++;
 	}
-	_putchar(*s);
-	_puts_recursion(s + 1);
+
+	return (s);
 }
