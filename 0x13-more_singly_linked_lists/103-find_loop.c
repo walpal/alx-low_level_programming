@@ -1,13 +1,43 @@
-#include <stdio.h>
 
-void first(void) __attribute__ ((constructor));
+#include "lists.h"
 
 /**
- * first - prints a sentence before the main
- * function is executed
+ * find_listint_loop - finds the loop in a linked list.
+ * @head: head of a list.
+ *
+ * Return: the address of the node where the loop starts.
  */
-void first(void)
+listint_t *find_listint_loop(listint_t *head)
 {
-	printf("You're beat! and yet, you must allow,\n");
-	printf("I bore my house upon my back!\n");
+	listint_t *p2;
+	listint_t *prev;
+
+	p2 = head;
+	prev = head;
+	while (head && p2 && p2->next)
+	{
+		head = head->next;
+		p2 = p2->next->next;
+
+		if (head == p2)
+		{
+			head = prev;
+			prev =  p2;
+			while (1)
+			{
+				p2 = prev;
+				while (p2->next != head && p2->next != prev)
+				{
+					p2 = p2->next;
+				}
+				if (p2->next == head)
+					break;
+
+				head = head->next;
+			}
+			return (p2->next);
+		}
+	}
+
+	return (NULL);
 }
