@@ -1,19 +1,23 @@
-#include <stdlib.h>
+
 #include "lists.h"
 
 /**
- * free_list - frees a linked list
- * @head: list_t list to be freed
+ * sum_listint - returns the sum of all the data (n) of
+ * a linked list.
+ * @head: head of a list.
+ *
+ * Return: sum of all the data (n).
  */
-void free_list(list_t *head)
+int sum_listint(listint_t *head)
 {
-	list_t *temp;
+	int sum;
 
-	while (head)
+	sum = 0;
+	while (head != NULL)
 	{
-		temp = head->next;
-		free(head->str);
-		free(head);
-		head = temp;
+		sum += head->n;
+		head = head->next;
 	}
+
+	return (sum);
 }
