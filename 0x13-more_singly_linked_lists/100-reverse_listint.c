@@ -1,13 +1,27 @@
-#include <stdio.h>
-
-void first(void) __attribute__ ((constructor));
+#include "lists.h"
 
 /**
- * first - prints a sentence before the main
- * function is executed
+ * reverse_listint - reverses a linked list.
+ * @head: head of a list.
+ *
+ * Return: pointer to the first node.
  */
-void first(void)
+listint_t *reverse_listint(listint_t **head)
 {
-	printf("You're beat! and yet, you must allow,\n");
-	printf("I bore my house upon my back!\n");
+	listint_t *p;
+	listint_t *n;
+
+	p = NULL;
+	n = NULL;
+
+	while (*head != NULL)
+	{
+		n = (*head)->next;
+		(*head)->next = p;
+		p = *head;
+		*head = n;
+	}
+
+	*head = p;
+	return (*head);
 }
