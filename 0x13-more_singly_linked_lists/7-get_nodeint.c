@@ -1,19 +1,21 @@
-#include <stdlib.h>
+
 #include "lists.h"
 
 /**
- * free_list - frees a linked list
- * @head: list_t list to be freed
+ * get_nodeint_at_index - returns the nth node of a linked list
+ * @head: head of a list.
+ * @index: index of the node.
+ *
+ * Return: nth node. If node does not exist, returns NULL.
  */
-void free_list(list_t *head)
+listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-	list_t *temp;
+	unsigned int i;
 
-	while (head)
+	for (i = 0; i < index && head != NULL; i++)
 	{
-		temp = head->next;
-		free(head->str);
-		free(head);
-		head = temp;
+		head = head->next;
 	}
+
+	return (head);
 }
