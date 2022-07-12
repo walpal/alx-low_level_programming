@@ -1,51 +1,28 @@
-#include "main.h"
+#include "variadic_functions.h"
 
 /**
- * string_nconcat - concatenates two strings.
- * @s1: first string
- * @s2: second string
- * @n: index
- * Return: char pointer
+ * print_numbers - prints numbers given as parameters
+ * @separator: string to be printed between numbers
+ * @n: number of integers passed to the function
  */
-
-char *string_nconcat(char *s1, char *s2, unsigned int n)
+void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	char *p;
-	unsigned int size1 = 0, size2 = 0, i;
+	unsigned int i;
+	va_list list;
 
-	if (s1 == NULL)
-		s1 = "";
+	va_start(list, n);
 
-	if (s2 == NULL)
-		s2 = "";
-
-	while (s1[size1] != '\0')
+	for (i = 0; i < n; i++)
 	{
-		size1++;
+		if (!separator)
+			printf("%d", va_arg(list, int));
+		else if (separator && i == 0)
+			printf("%d", va_arg(list, int));
+		else
+			printf("%s%d", separator, va_arg(list, int));
 	}
 
-	while (s2[size2] != '\0')
-	{
-		size2++;
-	}
+	va_end(list);
 
-	if (n > size2)
-	n = size2;
-	p = malloc((size1 + n + 1) * sizeof(char));
-
-	if (p == NULL)
-		return (0);
-
-	for (i = 0; i < size1; i++)
-	{
-		p[i] = s1[i];
-	}
-
-	for (; i < (size1 + n); i++)
-	{
-		p[i] = s2[i - size1];
-	}
-	p[i] = '\0';
-
-return (p);
+	printf("\n");
 }
