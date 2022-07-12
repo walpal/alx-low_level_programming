@@ -1,39 +1,33 @@
-#include "main.h"
+#include "variadic_functions.h"
 
 /**
- * _memset - copy char
- * @s: string
- * @b: input
- * @n: bytes
- * Return: string
+ * print_strings - prints strings
+ * @separator: separator between strings
+ * @n: number of arguments
  */
-char *_memset(char *s, char b, unsigned int n)
+void print_strings(const char *separator, const unsigned int n, ...)
 {
 	unsigned int i;
+	char *str;
+
+	va_list list;
+
+	va_start(list, n);
 
 	for (i = 0; i < n; i++)
 	{
-		s[i] = b;
+		str = va_arg(list, char *);
+		if (!str)
+			str = "(nil)";
+		if (!separator)
+			printf("%s", str);
+		else if (separator && i == 0)
+			printf("%s", str);
+		else
+			printf("%s%s", separator, str);
 	}
-	return (s);
-}
 
-/**
- * _calloc - allocates memory for an array using malloc
- * @nmemb: n elements
- * @size: bytes
- * Return: pointer
- */
-void *_calloc(unsigned int nmemb, unsigned int size)
-{
-	void *p;
+	printf("\n");
 
-	if (nmemb == 0 || size == 0)
-		return (NULL);
-	p = malloc(nmemb * size);
-
-	if (p == NULL)
-		return (NULL);
-	_memset(p, 0, (nmemb * size));
-	return (p);
+	va_end(list);
 }
